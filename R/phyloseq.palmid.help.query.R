@@ -65,7 +65,7 @@ phyloseq.palmid.help.query <- function(srr,
     dplyr::filter(run %in% srr_palm) %>% 
     dplyr::select(metadata) %>% 
     dplyr::collect()
-  pb$tick()
+  pb$tick() %>% print
   Sys.sleep(1/100)
   
 
