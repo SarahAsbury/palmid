@@ -11,6 +11,8 @@
 #' @import Matrix
 #' @import phyloseq
 #' @import Biostrings
+#' @export
+
 
 #TODO: test with other samples/taxa combinations 
 phyloseq.palmid <- function(srr,

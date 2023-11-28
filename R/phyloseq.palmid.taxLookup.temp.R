@@ -6,6 +6,7 @@
 #' @param con A connection to the Serratus database
 #' @return A character vector of SRA accessions.
 #' @import dplyr
+
 taxLookup <- function(tax, con) {
   # Get ranking of taxonomic term
   class <- taxize::classification(tax, db = 'ncbi')[[1]]
