@@ -6,6 +6,7 @@
 #' @param con A connection to the Serratus database
 #' @return A character vector of SRA accessions.
 #' @import dplyr
+#' @export
 
 taxLookup <- function(tax, con) {
   # Get ranking of taxonomic term
