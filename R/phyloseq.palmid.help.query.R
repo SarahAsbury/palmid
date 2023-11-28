@@ -31,7 +31,7 @@ phyloseq.palmid.help.query <- function(srr,
   
   ### processing
   out <- list()
-  pb <- progress::progress_bar$new(
+  pb <<- progress::progress_bar$new(
     format = "querying serratus [:bar] :percent eta: :eta",
     total = 5,
     show_after = 0,
