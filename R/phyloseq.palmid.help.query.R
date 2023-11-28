@@ -10,7 +10,8 @@
 #' tax = contains tax_id for each palm_id. Derived from Serratus table palm_gb.
 #' tax_ranks = maps tax_id to taxonomic rank. Derived from Serratus table tax_lineage.
 #' @seealso [SerratusConnect()]
-#' @import tidyverse, progress
+#' @import tidyverse
+#' @import progress
 
 
 phyloseq.palmid.help.query <- function(srr, 

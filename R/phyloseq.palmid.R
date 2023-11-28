@@ -10,6 +10,8 @@
 #' @import tidyverse
 #' @import Matrix
 #' @import phyloseq
+#' @import furrr
+#' @import Biostrings
 
 #TODO: test with other samples/taxa combinations 
 phyloseq.palmid <- function(srr,
