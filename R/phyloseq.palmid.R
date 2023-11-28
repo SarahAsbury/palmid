@@ -19,7 +19,8 @@ phyloseq.palmid <- function(srr,
                             metadata = c("run", "bio_project", "bio_sample", "spots", "bases", "tax_id", "scientific_name"),
                             sample = "run_id",
                             taxa = "sotu", 
-                            qc_filter = T
+                            qc_filter = T,
+                            threads = 1
                             )
   {
   # add mandatory metadata columns
@@ -31,7 +32,8 @@ phyloseq.palmid <- function(srr,
   data_import <- phyloseq.palmid.help.query(srr = srr,
                                             con = con,
                                             metadata = metadata,
-                                            qc_filter = qc_filter)
+                                            qc_filter = qc_filter, 
+                                            threads = threads)
   
   # derive count matrix
   count_mat <- phyloseq.palmid.help.count(data_import$palm,

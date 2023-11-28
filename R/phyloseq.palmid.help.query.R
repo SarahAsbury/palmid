@@ -17,10 +17,14 @@
 phyloseq.palmid.help.query <- function(srr, 
                                        con = SerratusConnect(),
                                        metadata = c("run", "bio_project", "bio_sample", "spots", "bases", "tax_id", "scientific_name"),
-                                       qc_filter = T
+                                       qc_filter = T,
+                                       threads = 1
 )
 {
+  # set threads for parallel computing
+  plan(multicore, workers = threads)
   
+
   ### sanity checks - input 
   srr_regex <- "[E|S|D]RR[:digit:]{6,7}"
   if(!(srr %>% str_detect(srr_regex) %>% all))
