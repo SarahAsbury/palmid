@@ -105,7 +105,7 @@ phyloseq.palmid.help.query <- function(srr,
   out$palm_seq <- tbl(con, "palmdb2") %>% 
     dplyr::filter(palm_id %in% query_taxa) %>% 
     dplyr::collect()
-  pb$tick
+  pb$tick()
   Sys.sleep(1/100)
 
   ### ctrl
