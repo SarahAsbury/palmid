@@ -13,16 +13,12 @@
 #' @import tidyverse
 #' @import progress
 
-
 phyloseq.palmid.help.query <- function(srr, 
                                        con = SerratusConnect(),
                                        metadata = c("run", "bio_project", "bio_sample", "spots", "bases", "tax_id", "scientific_name"),
-                                       qc_filter = T,
-                                       threads = 1
+                                       qc_filter = T
 )
 {
-  # set threads for parallel computing
-  plan(multicore, workers = threads)
   
 
   ### sanity checks - input 

@@ -7,13 +7,18 @@
 #' @return Taxa x sample count matrix. Taxa are rows. Columns are samples.
 #' @import tidyverse
 #' @import Matrix
-
+#' @import furrr 
 
 phyloseq.palmid.help.count <- function(palm,
                                        sample     = "run_id",
-                                       taxa       = "sotu"
+                                       taxa       = "sotu",
+                                       threads    = 1
                                        )
 {
+  
+  # set threads for parallel computing
+  future::plan(future::multicore, workers = threads)
+  
   
   #TODO: add input sanity checks
   # sample column found in palm 

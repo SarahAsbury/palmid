@@ -12,3 +12,4 @@ palmid-lambda
 local/*
 tmp/*
 var/*
+R/bindrows.chunk.R

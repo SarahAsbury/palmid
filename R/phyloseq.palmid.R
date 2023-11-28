@@ -1,6 +1,6 @@
 #' @title phyloseq.palmid
 #' @description
-# ' Create a phyloseq object for all viruses (palm_id) detected in given SRR runs.
+#' Create a phyloseq object for all viruses (palm_id) detected in given SRR runs.
 #' @param srr character vector of SRA run IDs to generate phyloseq object. 
 #' @param con Serratus SQL database connection 
 #' @param metadata list of metadata columns to extract from Serratus table sraruns. Reducing number of columns can decrease query time.
@@ -10,7 +10,6 @@
 #' @import tidyverse
 #' @import Matrix
 #' @import phyloseq
-#' @import furrr
 #' @import Biostrings
 
 #TODO: test with other samples/taxa combinations 
@@ -32,13 +31,13 @@ phyloseq.palmid <- function(srr,
   data_import <- phyloseq.palmid.help.query(srr = srr,
                                             con = con,
                                             metadata = metadata,
-                                            qc_filter = qc_filter, 
-                                            threads = threads)
+                                            qc_filter = qc_filter)
   
   # derive count matrix
   count_mat <- phyloseq.palmid.help.count(data_import$palm,
                                           sample = sample,
-                                          taxa   = taxa
+                                          taxa   = taxa,
+                                          threads = threads
   )
   
   
