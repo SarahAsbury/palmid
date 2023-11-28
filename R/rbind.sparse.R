@@ -30,7 +30,10 @@ rbind.sparse <- function(x,y){
                     )
   )
   )
-                    
+  
+  #reorder columns in matrix y to match columns in matrix x
+  mat_filled[[2]] <- mat_filled[[2]][, colnames(mat_filled[[1]])]
+  
 
   # rbind
   out <- mat_filled %>% reduce(~rbind2(.x,.y))
