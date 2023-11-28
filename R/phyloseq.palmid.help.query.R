@@ -67,7 +67,7 @@ phyloseq.palmid.help.query <- function(srr,
     dplyr::filter(run %in% srr_palm) %>% 
     dplyr::select(metadata) %>% 
     dplyr::collect()
-  assign("pb", pb$tick(), envir = "Global.Env")
+  assign("pb", pb$tick(), envir = .GlobalEnv)
   # pb$tick()
   Sys.sleep(1/100)
   
