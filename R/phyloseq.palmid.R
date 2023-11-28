@@ -30,21 +30,21 @@ phyloseq.palmid <- function(srr,
   metadata_input <- metadata
   metadata <- c(metadata_input, "run", "bio_sample", "spots", "tax_id") %>% unique
   
-  
   # query Serratus
+  message("querying serratus")
   data_import <- phyloseq.palmid.help.query(srr = srr,
                                             con = con,
                                             metadata = metadata,
                                             qc_filter = qc_filter)
-  
   # derive count matrix
+  message("generating count matrix")
   count_mat <- phyloseq.palmid.help.count(data_import$palm,
                                           sample = sample,
                                           taxa   = taxa,
                                           threads = threads
   )
   
-  
+  message("create phyloseq object")
   # format taxonomic metadata 
   # note: if using sotu, taxonomic ranks and palm_id are derived from the tax_id and palm sequence associated with that OTUs palm_id 
   #    to be added to the refseq slot? or returned separately? 
