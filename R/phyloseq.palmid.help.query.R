@@ -30,15 +30,17 @@ phyloseq.palmid.help.query <- function(srr,
   
   
   ### processing
+  # save results to list 
   out <- list()
-  pb <<- progress::progress_bar$new(
-    format = "querying serratus [:bar] :percent eta: :eta",
-    total = 5,
-    show_after = 0,
-    clear = T)
   
-  
-  
+  # progress bar
+  assign("pb", 
+         progress::progress_bar$new(
+           format = "querying serratus [:bar] :percent eta: :eta",
+           total = 5,
+           show_after = 0,
+           clear = T),
+         envir = .GlobalEnv)
   invisible(pb$tick(0))
   
   
@@ -65,7 +67,7 @@ phyloseq.palmid.help.query <- function(srr,
     dplyr::filter(run %in% srr_palm) %>% 
     dplyr::select(metadata) %>% 
     dplyr::collect()
-  pb$tick() %>% print
+  pb$tick()
   Sys.sleep(1/100)
   
 
