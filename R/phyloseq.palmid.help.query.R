@@ -67,7 +67,8 @@ phyloseq.palmid.help.query <- function(srr,
     dplyr::filter(run %in% srr_palm) %>% 
     dplyr::select(metadata) %>% 
     dplyr::collect()
-  pb$tick()
+  assign("pb", pb$tick(), envir = "Global.Env")
+  # pb$tick()
   Sys.sleep(1/100)
   
 
@@ -108,8 +109,7 @@ phyloseq.palmid.help.query <- function(srr,
     dplyr::collect()
   pb$tick
   Sys.sleep(1/100)
-  pb$close()
-  
+
   ### ctrl
   message(sprintf("\n\n%s/%s SRR ids were found in palm_id database (QC filter = %s).", length(srr_palm %>% unique), length(srr %>% unique), qc_filter))
   
