@@ -108,10 +108,12 @@ phyloseq.palmid.help.query <- function(srr,
     dplyr::collect()
   pb$tick
   Sys.sleep(1/100)
-  
+  pb$close()
   
   ### ctrl
   message(sprintf("\n\n%s/%s SRR ids were found in palm_id database (QC filter = %s).", length(srr_palm %>% unique), length(srr %>% unique), qc_filter))
+  
+  
   
   
 return(out)
