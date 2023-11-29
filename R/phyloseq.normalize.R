@@ -14,8 +14,13 @@
 phyloseq.normalize <- function(dat, 
                                method = "cpm"){
   
+  # normalize
   cpm.size.factor <- (dat %>% sample_data() %>% data.frame %>% pull(spots))/1E6 # library size factor 
-  out <- (dat %>% t %>% otu_table/cpm.size.factor) %>% t()                      # normalize phyloseq object 
-
+  norm <- (dat %>% t %>% otu_table/cpm.size.factor) %>% t()                     # normalized otu table 
+  
+  # update phyloseq
+  out <- dat
+  otu_table(out) <- norm
+  
   return(out)
 }
