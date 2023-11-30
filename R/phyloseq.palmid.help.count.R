@@ -63,7 +63,7 @@ phyloseq.palmid.help.count <- function(palm,
   
   # bind partitioned matrices
   # chunk size = 10
-  count_final <- count_mat %>% reduce(rbind.sparse)
+  count_final <- count_mat %>% purrr::reduce(rbind.sparse)
 
 
   # phyloseq formatting

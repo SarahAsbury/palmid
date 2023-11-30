@@ -15,7 +15,6 @@
 
 
 #TODO: test with other samples/taxa combinations 
-#TODO: progress bar in query helper function is not working
 
 phyloseq.palmid <- function(srr,
                             con = SerratusConnect(),
