@@ -14,6 +14,7 @@ phyloseq.merge.group <- function(dat,
                                  group_by = "bio_sample"){
   out <- dat %>% 
     phyloseq::merge_samples(group_by) %>% 
+    t() %>% 
     phyloseq::merge_phyloseq(refseq(dat)) # for some reason merge_samples removes the refseq slot
   
   
