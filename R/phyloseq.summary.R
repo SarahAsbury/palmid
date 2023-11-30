@@ -21,18 +21,18 @@
 phyloseq.summary <- function(dat){
 
   viral_summary <- data.frame(
-    taxa_total_detected = dat %>% otu_table() %>% colSums(),
-    taxa_n_samples      = (dat %>% otu_table() %>% replace(.!=0, 1) %>% colSums)         # number of samples taxa detected within
+    taxa_total_detected = dat %>% otu_table() %>% rowSums(),
+    taxa_n_samples      = (dat %>% otu_table() %>% replace(.!=0, 1) %>% rowSums)         # number of samples taxa detected within
   ) %>% 
-    mutate(taxa_prevalence     = taxa_n_samples/(nrow(dat %>% otu_table))                # number of samples taxa detected within/total number of samples
+    mutate(taxa_prevalence     = taxa_n_samples/(ncol(dat %>% otu_table))                # number of samples taxa detected within/total number of samples
     ) %>% 
     cbind(dat %>% tax_table()) %>% 
     rownames_to_column(var = "sotu")
   
   
   sample_summary <- data.frame(
-    total_detected      = dat %>% otu_table() %>% rowSums(),
-    viral_community_n   = (dat %>% otu_table() %>% replace(.!=0, 1) %>% rowSums)                            # total number of unique taxa detected per sample
+    total_detected      = dat %>% otu_table() %>% colSums(),
+    viral_community_n   = (dat %>% otu_table() %>% replace(.!=0, 1) %>% colSums)                            # total number of unique taxa detected per sample
     
   ) %>% 
     cbind(dat %>% sample_data())
