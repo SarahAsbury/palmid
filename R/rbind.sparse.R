@@ -36,7 +36,7 @@ rbind.sparse <- function(x,y){
   
 
   # rbind
-  out <- mat_filled %>% reduce(~rbind2(.x,.y))
+  out <- mat_filled %>% purrr::reduce(~rbind2(.x,.y))
  
   return(out) 
 }
