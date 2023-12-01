@@ -6,7 +6,7 @@
 #' @seealso [phyloseq.palmid]
 #' @import tidyverse
 #' @import phyloseq
-
+#' @export
 
 phyloseq.rarefy <- function(dat){
   
