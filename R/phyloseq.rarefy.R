@@ -30,9 +30,9 @@ phyloseq.rarefy <- function(dat){
       otu_table(out) <- rarefy
       
       return(out)
-
+      }
       )
-  }
+  
   
   
   
