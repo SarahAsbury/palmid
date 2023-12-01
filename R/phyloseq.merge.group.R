@@ -28,10 +28,11 @@ phyloseq.merge.group <- function(dat,
     group_by(!!!syms(group_by)) %>% 
     mutate(across(.cols  = all_of(cols),
                   .fns   = ~paste(.x %>% unique, collapse = "|")
-    ) %>%
+    )) %>%
     mutate(spots_sep = spots,
            spots     = spots_sep %>% str_split("\\|") %>% map(~.x %>% as.numeric %>% sum) %>% unlist
-    ) %>% distinct %>%
+    ) %>% 
+    distinct %>%
     mutate(rownames = get(group_by)) %>% 
     column_to_rownames(var = "rownames")
   
