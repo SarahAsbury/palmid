@@ -15,7 +15,10 @@ phyloseq.merge.group(dat, group_by = "bio_sample")
 phyloseq object with samples merged by group_by variable
 }
 \description{
-Merge samples by some metadata variable. Metadata will be collapsed and separated by |. By default performs merge on bio_samples. Note: it is recommended to merge only after per-run normalization and pre-processing.
+Merge samples by some metadata variable. Metadata will be collapsed and separated by |. 
+The only exception is sequencing depth (spots), which will be both summed (spots) and collapse by | (spots_sep)
+
+By default performs merge on bio_samples. Note: it is recommended to merge only after per-run normalization and pre-processing.
 }
 \seealso{
 [phyloseq.normalize(), phyloseq.palmid]
