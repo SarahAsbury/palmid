@@ -4,10 +4,12 @@
 \alias{phyloseq.downsample}
 \title{phyloseq.downsample}
 \usage{
-phyloseq.downsample(dat)
+phyloseq.downsample(dat, decile.range = c(0, 0.9))
 }
 \arguments{
 \item{dat}{non-normalized phyloseq object derived from phyloseq.palmid()}
+
+\item{decile.range}{downsample decile range. numeric vector of length 2. default is 0 (min) to 90%}
 }
 \value{
 list:
