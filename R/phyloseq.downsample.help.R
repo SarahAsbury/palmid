@@ -52,7 +52,6 @@ phyloseq.downsample.help <- function(dat, disaggregated_otu, downsample){
                             
                             ~.x %>% table %>%
                               as.matrix %>% 
-                              replace(is.na(.), 0) %>% # replace NA with 0 viral counts
                               magrittr::set_colnames(.y))
     keep(\(x) nrow(x) > 0) %>% # only keep matrices with at least 1 taxa sampled
     map(~.x %>%
