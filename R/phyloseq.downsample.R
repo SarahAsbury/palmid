@@ -30,7 +30,7 @@ phyloseq.downsample <- function(dat,
   ### Run
   # sequencing depth (spots) minimum, maximum, and each decile 
   downsample_depths <- quantile(dat %>% sample_data %>% data.frame %>% pull(spots),
-                                probs = seq(0, 0.9, by = .1))
+                                probs = seq(decile.range[1], decile.range[2], by = .1))
   
   
   # disaggregate the otu table 
