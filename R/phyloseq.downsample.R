@@ -9,7 +9,7 @@
 #' @param decile.range downsample decile range. numeric vector of length 2. default is 0 (min) to 90% 
 #' @return list:
 #' physeq = list of 11 phyloseq objects downsampled to min/max (n = 2) and each decile (n = 9)
-#' downsample_depths = 
+#' downsample_depths = read counts used for each downsample
 #' @seealso [phyloseq.palmid]
 #' @import tidyverse
 #' @import phyloseq

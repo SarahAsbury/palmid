@@ -14,7 +14,7 @@ phyloseq.downsample(dat, decile.range = c(0, 0.9))
 \value{
 list:
 physeq = list of 11 phyloseq objects downsampled to min/max (n = 2) and each decile (n = 9)
-downsample_depths =
+downsample_depths = read counts used for each downsample
 }
 \description{
 Downsample phyloseq object per decile. Phyloseq object should count raw coverage count data (non-normalized)
