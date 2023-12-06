@@ -5,7 +5,8 @@
 #' @return Single sparse matrix derived from all row-binded sparse matrices in list.
 #' @import tidyverse
 #' @import Matrix
-#' @export
+#' @export 
+#' 
 
 rbind.sparse <- function(x,y){
   
