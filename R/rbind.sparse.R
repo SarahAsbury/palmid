@@ -6,7 +6,6 @@
 #' @import tidyverse
 #' @import Matrix
 
-
 rbind.sparse <- function(x,y){
   
   
@@ -32,8 +31,8 @@ rbind.sparse <- function(x,y){
   )
   
   #reorder columns in matrix y to match columns in matrix x
-  mat_filled[[2]] <- mat_filled[[2]][, colnames(mat_filled[[1]])]
-  
+  column_order <- colnames(mat_filled[[1]])
+  mat_filled[[2]] <- mat_filled[[2]][, column_order, drop = F]
 
   # rbind
   out <- mat_filled %>% purrr::reduce(~rbind2(.x,.y))

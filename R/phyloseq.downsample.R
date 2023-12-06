@@ -50,54 +50,21 @@ phyloseq.downsample <- function(dat){
   
   # downsample
   otu_table_downsample <- map(downsample_depths,
+                              
+                              function(downsample){
+                                
+                                out <- phyloseq.downsample.help(dat = dat, disaggregated_otu = disaggregated_otu, downsample = downsample)
+                                
+                                # progress bar
+                                pb$tick()
+                                Sys.sleep(1/100)
+                                
+                                return(out)
+                                }
+                              
+                              
+                              
                         
-                        #TODO: this should really be factorized as a helper function
-                        function(downsample){
-                          
-                          # sample viral count n
-                          # sample n number of viral counts depending on ratio between: total viruses per sample:sample library depth
-                          sample_n <- dat %>% sample_data %>% data.frame %>% 
-                            mutate(downsample = downsample,
-                                   total_viral_counts = dat %>% otu_table %>% colSums()
-                            ) %>%
-                            dplyr::rowwise() %>% 
-                            mutate(sample_n = total_viral_counts/spots * min(downsample, spots)) %>% # downsize to downsamples depth or library size, whichever is smaller
-                            pull(sample_n, name = ) %>% 
-                            round(digits = 0) %>% # round to the nearest whole number
-                            setNames(dat %>% sample_data %>% data.frame %>% rownames())
-                          
-                          # sanity check
-                          if((names(sample_n) != names(disaggregated_otu)) %>% any) stop("Unexpected error. Names do not match between derived data.")
-                          
-                          # sample n number of viral counts from each sample
-                          downsampled_list <- map2(disaggregated_otu,
-                                                    sample_n,
-                                                    
-                                                    ~.x %>% sample(size = .y, replace = F)
-                                                    
-                          ) 
-                          
-                          # format downsampled counts as matrix
-                          downsampled_table <- map2(downsampled_list,
-                                                    names(downsampled_list),
-                                                    
-                                                    ~.x %>% table %>% as.data.frame %>% 
-                                                      rename(!!.y := "Freq") %>% 
-                                                      rename("taxa" = 1) %>% 
-                                                      column_to_rownames(var = "taxa") %>% 
-                                                      t() %>% data.frame
-                                                    
-                          ) %>%
-                            bind_rows %>%
-                            replace(is.na(.), 0) %>% # replace NA with 0 viral counts
-                            t()
-                          
-                          # progress bar
-                          pb$tick()
-                          Sys.sleep(1/100)
-                          
-                          return(downsampled_table)
-                        }
                         
   )
   
