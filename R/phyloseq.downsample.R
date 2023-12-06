@@ -6,6 +6,7 @@
 #' Proportions are rounded to the nearest whole number (e.g 22 viral counts/100 library size * 10 downsample = 2.2  = 2 counts sampled. 
 #' Currently, any samples that have 0 counts when downsamples are removed.
 #' @param dat non-normalized phyloseq object derived from phyloseq.palmid()
+#' @param decile.range downsample decile range. numeric vector of length 2. default is 0 (min) to 90% 
 #' @return list:
 #' physeq = list of 11 phyloseq objects downsampled to min/max (n = 2) and each decile (n = 9)
 #' downsample_depths = 
@@ -15,7 +16,9 @@
 #' @export
 
 #TODO: provide support to return 100% of samples, even if there are 0 viral counts after downsampling
-phyloseq.downsample <- function(dat){
+phyloseq.downsample <- function(dat,
+                                decile.range = c(0, 0.9)
+                                ){
   
   ### Sanity check
   # confirm raw counts input: 
