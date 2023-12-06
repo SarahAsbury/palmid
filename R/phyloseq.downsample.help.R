@@ -18,8 +18,6 @@
 phyloseq.downsample.help <- function(dat, disaggregated_otu, downsample){
   
   
-  print("Start sample_n")
-  Sys.time() %>% print
   # sample viral count n
   # sample n number of viral counts depending on ratio between: total viruses per sample:sample library depth
   sample_n <- dat %>% sample_data %>% data.frame %>% 
@@ -37,9 +35,7 @@ phyloseq.downsample.help <- function(dat, disaggregated_otu, downsample){
   
   
   
-  print("Start Downsample")
-  Sys.time() %>% print
-  
+
   # sample n number of viral counts from each sample
   downsampled_list <- map2(disaggregated_otu,
                            sample_n,
@@ -48,9 +44,7 @@ phyloseq.downsample.help <- function(dat, disaggregated_otu, downsample){
                            
   ) 
   
-  print("Start matrix formatting/rbind")
-  Sys.time() %>% print
-  
+
   
   # format downsampled counts as matrix
   downsampled_table <- map2(downsampled_list,
@@ -75,9 +69,7 @@ phyloseq.downsample.help <- function(dat, disaggregated_otu, downsample){
 
   
     
-  print("Fini")
-  Sys.time() %>% print
-  
+
   
   
   return(downsampled_table)
